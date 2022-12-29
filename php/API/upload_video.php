@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 if(!empty($_POST['name']) && !empty($_POST['video_desc']) && !empty($_POST['thumbnail_ipfs']) && !empty($_POST['video_uid']) && !empty($_POST['category'])) {
 	// $link= new mysqli("localhost","finflix","finflix","finflix");
-	$link= new mysqli("localhost","root","","crypto-db");
+	$link= new mysqli("localhost","root","qwerty","crypto-db");
 	$VideoDetails = '/videodetails';
 	if($link->connect_error){
 		die("connection Failed" .$link->connect_error);
@@ -35,11 +35,22 @@ if(!empty($_POST['name']) && !empty($_POST['video_desc']) && !empty($_POST['thum
 	$user_type = mysqli_real_escape_string($link, $_POST['user_type']);	
 	$moreDetails = $VideoDetails . '/' . $video_uuid;
 	$categoryName = '';
-	if($category == '927f0965-6eed-462c-bfa0-79867c9f9448'){
-		$categoryName='Cryptonite';
+	// echo "this is video category" + $category;
+	// 5822014a-02af-41c4-8564-0ec4ceba8db6 news 
+	// 927f0965-6eed-462c-bfa0-79867c9f9448 explainer
+	// fd3d24bd-8764-494e-9ade-40911b8e11a1 tutorial
+	// 5dae4ba7-933a-40a9-8866-49ee971ccf87 review
+	// 0f01d804-648d-42a7-ab11-bdc373f4b7bd others
+	if($category == '5822014a-02af-41c4-8564-0ec4ceba8db6'){
+		$categoryName='News';
+	}else if($category == '927f0965-6eed-462c-bfa0-79867c9f9448'){
+		$categoryName='explainer';
 	}else if($category == 'fd3d24bd-8764-494e-9ade-40911b8e11a1'){
-		$categoryName='Cryptonext';
-	}else{
+		$categoryName='tutorial';
+	}else if($category == '5dae4ba7-933a-40a9-8866-49ee971ccf87'){
+		$categoryName='review';
+	}
+	else{
 		$categoryName = '';
 	}
 	
@@ -48,8 +59,9 @@ if(!empty($_POST['name']) && !empty($_POST['video_desc']) && !empty($_POST['thum
 
 	if($result1 = mysqli_query($link, $query)) {
 		$data['status'] = 201;
-		$data['message']= 'Insert Data Successfully';
+		$data['message']= 'Insert Video Data Successfully';
 		echo json_encode($data);
+		echo "Insert Data Successfully";
 		mysqli_close($link);
 
 	}else{  

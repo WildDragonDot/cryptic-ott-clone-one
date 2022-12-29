@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 	// $link= new mysqli("localhost","finflix","finflix","finflix");
-	$link= new mysqli("localhost","root","","crypto-db");
+	$link= new mysqli("localhost","root","qwerty","crypto-db");
 	if($link->connect_error){
 		die("connection Failed" .$link->connect_error);
 	}
@@ -19,7 +19,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     $hash_password = hash('sha256', $password);
 
     $query = mysqli_query($link, "SELECT * FROM `dual_auth` WHERE `username` = '$username' AND `password` = '$hash_password'");
-
+    // $data['userExists'] = true;
     if (mysqli_num_rows($query) !=0 ) {
         $data['status'] = 200;
         $data['userExists'] = true;

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('link.php');
-$client = '';
+$client = 'https://ipfs.fleek.co/ipfs/';
 $premium_pass = $_SESSION['premiumPass'];
 $access_pass = $_SESSION['accessPass'];
 $super_pass = $_SESSION['superPass'];

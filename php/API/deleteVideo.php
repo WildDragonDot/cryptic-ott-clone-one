@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 if(!empty($_POST['id'])){
 	// $link= new mysqli("localhost","finflix","finflix","finflix");
-	$link= new mysqli("localhost","root","","crypto-db");
+	$link= new mysqli("localhost","root","qwerty","crypto-db");
     $client = 'https://';
     $web = 'https://finflix.finstreet.in/videoPlayer.php'; 
     $VideoDetails = '/videodetails';

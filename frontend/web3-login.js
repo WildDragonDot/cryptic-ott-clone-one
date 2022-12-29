@@ -65,6 +65,7 @@ function showButtonText() {
   for (var i = 0; i < slides.length; i++) {
     document.getElementsByClassName('buttonText')[i].innerHTML = userLoginData.buttonText;
   }
+
 }
 
 

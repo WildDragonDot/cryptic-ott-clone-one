@@ -1710,12 +1710,12 @@ if ($user_address != null && $user_address != '') {
                     .then(response => response.json())
                     .then(response => {
                         const ownerships = response.ownerships;
-                        let passStatus = false;
+                        let passStatus = true;
                         ownerships.map((value, key) => {
                             const owner_address = value.owner;
                             const owner_meta_address = owner_address.split("ETHEREUM:")[1];
-                            if (owner_meta_address === user_address) {
-                            // if (false) {
+                            if (false) {
+                            //  if (true) {
                                 $.ajax({
                                     type: 'POST',
                                     url: 'php/verifyAccessPass.php',
@@ -1761,12 +1761,12 @@ if ($user_address != null && $user_address != '') {
                     .then(response => response.json())
                     .then(response => {
                         const ownerships = response.ownerships;
-                        const passStatus = false;
+                        const passStatus = true;
                         ownerships.map((value, key) => {
                             const owner_address = value.owner;
                             const owner_meta_address = owner_address.split("ETHEREUM:")[1];
-                            if (owner_meta_address === loginUserAddress) {
-                            // if (false) {
+                            if (false) {
+                            //  if (true) {
                                 $.ajax({
                                     type: 'POST',
                                     url: 'php/verifySuperPass.php',

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('link.php');
-$client = '';
+$client = 'https://ipfs.fleek.co/ipfs/';
 $post_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 if(isset($_SESSION['crypticUserAddress'])){
     $user_address = $_SESSION['crypticUserAddress'];

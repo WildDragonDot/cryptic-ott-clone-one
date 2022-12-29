@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("php/link.php");
-$client = '';
+$client = 'https://ipfs.fleek.co/ipfs/';
 $user_address = '';
 if(isset($_SESSION['crypticUserAddress'])){
     $user_address = $_SESSION['crypticUserAddress'];
