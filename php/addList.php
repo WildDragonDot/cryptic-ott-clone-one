@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('link.php');
-$client = 'https://ipfs.fleek.co/ipfs/';
+$client = '';
 if (!isset($_SESSION['crypticUserAddress'])) {
     header("Location: index");
 } else {

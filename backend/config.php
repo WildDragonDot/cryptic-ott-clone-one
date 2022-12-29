@@ -2,7 +2,7 @@
 
 $servertype = "mysql"; // mysql, pgsql
 $servername = "localhost";
-$serverport = 3307; // mysql: 3306, pgsql: 5432
+$serverport = 3306; // mysql: 3306, pgsql: 5432
 $username = "root";
 $password = "";
 $dbname = "crypto-db";

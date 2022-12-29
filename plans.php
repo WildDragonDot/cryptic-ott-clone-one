@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('php/link.php');
-$client = 'https://ipfs.fleek.co/ipfs/';
+$client = '';
 $user_address = '';
 $post_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 $super_pass_token_id = '';

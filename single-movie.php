@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("php/link.php");
-$client = 'https://ipfs.fleek.co/ipfs/';
+$client = '';
 $premium_pass = $_SESSION['premiumPass'];
 $access_pass = $_SESSION['accessPass'];
 $super_pass = $_SESSION['superPass'];
@@ -384,6 +384,9 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
 
         .noneDisplay {
             display: none;
+        }
+        .gen-video-holder{
+            height: 80%;
         }
     </style>
 </head>

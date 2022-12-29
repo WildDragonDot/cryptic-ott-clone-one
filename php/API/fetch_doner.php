@@ -6,7 +6,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 
 	// $link= new mysqli("localhost","finflix","finflix","finflix");
-	$link= new mysqli("localhost","root","","fin_2021");
+	$link= new mysqli("localhost","root","","crypto-db");
 
 	if($link->connect_error){
 		die("connection Failed" .$link->connect_error);
