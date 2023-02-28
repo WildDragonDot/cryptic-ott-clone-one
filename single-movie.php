@@ -458,22 +458,11 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
                                                     </div>
                                                 </div>
                                                 <video src="#" controls crossorigin playsinline poster="<?= $thumbnail2 ?>" id="myVideo">
-                                                    <source type="video/mp4" size="576">
-                                                    <source type="video/mp4" size="720">
-                                                    <source type="video/mp4" size="1080">
-
-                                                    <!-- Caption files -->
-                                                    <!-- <track kind="captions" label="English" srclang="en"
-                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
-                                                    default>
-                                                <track kind="captions" label="Français" srclang="fr"
-                                                    src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt"> -->
-                                                    <!-- Fallback for browsers that don't support the <video> element -->
-                                                    <!-- <a href="<?= $video_url ?>" download>Download</a> -->
+                                                    <source type="video/m3u8" size="576">
+                                                    <source type="video/m3u8" size="720">
+                                                    <source type="video/m3u8" size="1080">
                                                 </video>
                                             </div>
-
-
                                         </div>
                                         <div class="next_button" style="z-index: 888;position:absolute;padding:1.5rem;margin-top:-85px;right:1rem;display:none;">
                                             <?php
@@ -723,7 +712,7 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
     <script src="js/sweetalert/sweetalert.min.js"></script>
     <script src="js/sweetalert/jquery.sweet-alert.custom.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-
+    <script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script>
 
     <script>
         const player = new Plyr('video', {
@@ -731,6 +720,7 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
                 active: true
             }
         });
+
         window.player = player;
 
         var oneTime = 0;
@@ -756,6 +746,8 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
                 $('.setvideoSize').css("height", '97vh');
             }
         }
+
+
         window.addEventListener("orientationchange", (event) => {
             if (window.innerHeight < window.innerWidth) {
                 $('.setvideoSize').css("height", '100%');
@@ -767,6 +759,8 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
                 }
             }
         });
+
+
         $(document).ready(function() {
             createFile2();
 
@@ -885,7 +879,6 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
         async function createFile2() {
             const video = document.getElementById('video_url').value;
             var request = new XMLHttpRequest();
-            request.open('GET', `${video}`, true);
             request.responseType = 'blob';
             request.onprogress = function(e) {
                 if (e.lengthComputable) {
@@ -910,15 +903,25 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
                     }
                 }
             };
+            request.open('GET', `${video}`, true);
             request.onload = function() {
                 if (this.status === 200) {
-                    var file = new File([this.response], 'test.mp4', {
-                        type: 'video/mp4'
-                    });
-                    let url2 = URL.createObjectURL(file);
-                    document.getElementById('myVideo').src = url2;
+                    const source = video;
+                    const video_id = document.querySelector('video');
+                    // console.log(source);
+                    if (!Hls.isSupported()) {
+                        video_id.src = source;
+                    } else {
+                        const hls = new Hls();
+                        hls.loadSource(source);
+                        hls.attachMedia(video_id);
+                        window.hls = hls;
+                        player.on('languagechange', () => {
+                            setTimeout(() => hls.subtitleTrack = player.currentTrack, 50);
+                        });
+                    }
                 }
-            };
+            }
             request.send();
         }
     </script>

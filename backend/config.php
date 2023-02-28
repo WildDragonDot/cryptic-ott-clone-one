@@ -4,7 +4,7 @@ $servertype = "mysql"; // mysql, pgsql
 $servername = "localhost";
 $serverport = 3306; // mysql: 3306, pgsql: 5432
 $username = "root";
-$password = "qwerty";
+$password = "";
 $dbname = "crypto-db";
 $tablename = "metamask_login";
 

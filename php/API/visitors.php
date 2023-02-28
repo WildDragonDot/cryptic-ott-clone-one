@@ -4,7 +4,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 	// $link= new mysqli("localhost","finflix","finflix","finflix");
-	$link= new mysqli("localhost","root","qwerty","crypto-db");
+	$link= new mysqli("localhost","root","","crypto-db");
 	$VideoDetails = '/videodetails';
 	if($link->connect_error){
 		die("connection Failed" .$link->connect_error);
