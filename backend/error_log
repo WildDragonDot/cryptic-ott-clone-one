@@ -1,0 +1,6 @@
+[27-Sep-2022 10:44:05 UTC] PHP Notice:  Undefined property: stdClass::$signature in /home/wbpu8mhztu7h/public_html/platform.crypticentertainments.com/backend/server.php on line 59
+[06-Oct-2022 10:16:04 UTC] PHP Notice:  Trying to get property 'request' of non-object in /home/wbpu8mhztu7h/public_html/platform.crypticentertainments.com/backend/server.php on line 15
+[06-Oct-2022 10:16:08 UTC] PHP Notice:  Trying to get property 'request' of non-object in /home/wbpu8mhztu7h/public_html/platform.crypticentertainments.com/backend/server.php on line 15
+[08-Dec-2022 10:07:10 UTC] PHP Notice:  Undefined property: stdClass::$signature in /home/wbpu8mhztu7h/public_html/platform.crypticentertainments.com/backend/server.php on line 59
+[10-Dec-2022 06:42:17 UTC] PHP Notice:  Undefined property: stdClass::$signature in /home/wbpu8mhztu7h/public_html/platform.crypticentertainments.com/backend/server.php on line 59
+[19-Dec-2022 14:54:58 UTC] PHP Notice:  Undefined property: stdClass::$signature in /home/wbpu8mhztu7h/public_html/platform.crypticentertainments.com/backend/server.php on line 59

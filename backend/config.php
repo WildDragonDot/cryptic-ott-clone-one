@@ -3,9 +3,9 @@
 $servertype = "mysql"; // mysql, pgsql
 $servername = "localhost";
 $serverport = 3306; // mysql: 3306, pgsql: 5432
-$username = "root";
-$password = "";
-$dbname = "crypto-db";
+$username = "cryptic_ott";
+$password = "HAgYdvWTCglx";
+$dbname = "cryptic_ott";
 $tablename = "metamask_login";
 
 try {

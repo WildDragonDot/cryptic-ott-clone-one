@@ -65,10 +65,31 @@ if ($user_address != null && $user_address != '') {
     <link rel="stylesheet" href="css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WBNQ43M');
+    </script>
+    <!-- End Google Tag Manager -->
     <link href="js/sweetalert/sweetalert.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBNQ43M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!--=========== Loader =============-->
     <div id="gen-loading">
@@ -147,7 +168,7 @@ if ($user_address != null && $user_address != '') {
                                                 <li>
                                                     <a href="favourite-videos">
                                                         <i class="fa fa-heart"></i>
-                                                        My Favourite Videos     </a>
+                                                        My Favourite Videos </a>
                                                 </li>
                                                 <li>
                                                     <a href="favourite-webseries">
@@ -268,7 +289,7 @@ if ($user_address != null && $user_address != '') {
                                     </td>
                                     <td>
                                         <div class="cell-inner">
-                                            <span>0.1 MATIC</span>
+                                            <span>1.0 MATIC</span>
                                             <!-- <span> / Month</span> -->
                                         </div>
                                     </td>
@@ -347,7 +368,7 @@ if ($user_address != null && $user_address != '') {
                                     </td>
                                     <td>
                                         <div class="cell-inner">
-                                        <i class="fas fa-times-circle"></i>
+                                            <i class="fas fa-times-circle"></i>
                                         </div>
                                     </td>
                                     <td>
@@ -369,12 +390,12 @@ if ($user_address != null && $user_address != '') {
                                     </td>
                                     <td>
                                         <div class="cell-inner">
-                                        <i class="fas fa-times-circle"></i>
+                                            <i class="fas fa-times-circle"></i>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="cell-inner">
-                                        <i class="fas fa-times-circle"></i>
+                                            <i class="fas fa-times-circle"></i>
                                         </div>
                                     </td>
                                     <td>
@@ -435,7 +456,7 @@ if ($user_address != null && $user_address != '') {
                                     </td>
                                     <td>
                                         <div class="cell-inner">
-                                        <i class="far fa-check-circle"></i>
+                                            <i class="far fa-check-circle"></i>
                                         </div>
                                     </td>
                                     <td>
@@ -676,13 +697,7 @@ if ($user_address != null && $user_address != '') {
                                 <h4 class="footer-title">Company</h4>
                                 <div class="menu-about-container">
                                     <ul class="menu">
-                                        <li class="menu-item"><a href="contact-us">Privacy
-                                                Policy</a></li>
-                                        <li class="menu-item"><a href="contact-us">Terms Of
-                                                Use</a></li>
                                         <li class="menu-item"><a href="contact-us">Contact us</a></li>
-
-                                        <li class="menu-item"><a href="contact-us">Faq</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -714,8 +729,7 @@ if ($user_address != null && $user_address != '') {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">
-                            <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 crypticent
-                                    ertainments All Rights
+                            <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 Cryptic Entertainments All Rights
                                     Reserved.</a></span>
                         </div>
                     </div>
@@ -760,4 +774,5 @@ if ($user_address != null && $user_address != '') {
 
 
 <!-- Mirrored from template.gentechtreedesign.com/html/streamlab/red-html/pricing-style-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Nov 2022 10:39:29 GMT -->
+
 </html>

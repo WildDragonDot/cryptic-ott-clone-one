@@ -60,10 +60,31 @@ if (isset($_GET['video_uuid'])) {
     <link rel="stylesheet" href="css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WBNQ43M');
+    </script>
+    <!-- End Google Tag Manager -->
     <link href="js/sweetalert/sweetalert.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBNQ43M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!--=========== Loader =============-->
     <div id="gen-loading">
@@ -142,7 +163,7 @@ if (isset($_GET['video_uuid'])) {
                                                 <li>
                                                     <a href="favourite-videos">
                                                         <i class="fa fa-heart"></i>
-                                                        My Favourite Videos     </a>
+                                                        My Favourite Videos </a>
                                                 </li>
                                                 <li>
                                                     <a href="favourite-webseries">
@@ -194,7 +215,7 @@ if (isset($_GET['video_uuid'])) {
             })
         </script>
     <?php
-    } else if($_SESSION['premiumPass'] == "verified_premium_pass" || in_array($video_uuid, $_SESSION['superPassVideoUuid'])) {
+    } else if ($_SESSION['premiumPass'] == "verified_premium_pass" || in_array($video_uuid, $_SESSION['superPassVideoUuid'])) {
     ?>
         <!-- breadcrumb -->
         <div class="gen-breadcrumb" style="background-image: url('images/background/asset-25.jpg');">
@@ -311,13 +332,7 @@ if (isset($_GET['video_uuid'])) {
                                     <h4 class="footer-title">Company</h4>
                                     <div class="menu-about-container">
                                         <ul class="menu">
-                                            <li class="menu-item"><a href="contact-us">Privacy
-                                                    Policy</a></li>
-                                            <li class="menu-item"><a href="contact-us">Terms Of
-                                                    Use</a></li>
                                             <li class="menu-item"><a href="contact-us">Contact us</a></li>
-
-                                            <li class="menu-item"><a href="contact-us">Faq</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -349,8 +364,7 @@ if (isset($_GET['video_uuid'])) {
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 align-self-center">
-                                <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 crypticent
-                                        ertainments All Rights
+                                <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 Cryptic Entertainments All Rights
                                         Reserved.</a></span>
                             </div>
                         </div>
@@ -365,8 +379,8 @@ if (isset($_GET['video_uuid'])) {
             <a class="top" id="top" href="#top"> <i class="ion-ios-arrow-up"></i> </a>
         </div>
         <!-- Back-to-Top end -->
-        <?php
-    } else{
+    <?php
+    } else {
     ?>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
@@ -380,7 +394,7 @@ if (isset($_GET['video_uuid'])) {
                 window.location.href = "/";
             })
         </script>
-    ?>
+        ?>
     <?php
     }
     ?>

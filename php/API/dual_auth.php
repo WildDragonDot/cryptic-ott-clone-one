@@ -19,7 +19,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
     $hash_password = hash('sha256', $password);
 
     $query = mysqli_query($link, "SELECT * FROM `dual_auth` WHERE `username` = '$username' AND `password` = '$hash_password'");
-    // $data['userExists'] = true;
+
     if (mysqli_num_rows($query) !=0 ) {
         $data['status'] = 200;
         $data['userExists'] = true;

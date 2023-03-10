@@ -3,9 +3,9 @@ session_start();
 include("php/link.php");
 $client = 'https://ipfs.fleek.co/ipfs/';
 $user_address = '';
-if(isset($_SESSION['crypticUserAddress'])){
+if (isset($_SESSION['crypticUserAddress'])) {
     $user_address = $_SESSION['crypticUserAddress'];
-}else{
+} else {
     $user_address = '';
     header("Location:login");
 }
@@ -13,19 +13,19 @@ $current_module_name = '';
 $module = '';
 $total_count = 0;
 if (isset($_GET['module'])) {
-      $module = $_GET['module'];
-      $result2 = mysqli_query($con, "SELECT * FROM `video_info` WHERE `module_uuid` = '$module'");
-      if (mysqli_num_rows($result2) > 0) {
+    $module = $_GET['module'];
+    $result2 = mysqli_query($con, "SELECT * FROM `video_info` WHERE `module_uuid` = '$module'");
+    if (mysqli_num_rows($result2) > 0) {
         $total_count = mysqli_num_rows($result2);
         while ($row2 = mysqli_fetch_assoc($result2)) {
             $current_module_name = $row2['module'];
         }
-      }else{
-        header("Location: index");        
-      }
-   } else {
-      header("Location: /");
-   }
+    } else {
+        header("Location: index");
+    }
+} else {
+    header("Location: /");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +33,7 @@ if (isset($_GET['module'])) {
 <head>
     <meta charset="utf-8">
     <!-- Enter a proper description for the page in the meta description tag -->
-    <meta name="description"
-        content="Home to directors, editors, musicians, cinematographers, illustrators, producers, and other geeky, cool, misfits tied together by our one true love—Crypto">
+    <meta name="description" content="Home to directors, editors, musicians, cinematographers, illustrators, producers, and other geeky, cool, misfits tied together by our one true love—Crypto">
 
     <!-- Enter a keywords for the page in tag -->
     <meta name="Keywords" content="">
@@ -46,8 +45,7 @@ if (isset($_GET['module'])) {
     <meta property="og:url" content="https://platform.crypticentertainments.com" />
 
     <!-- Enter page description -->
-    <meta property="og:description"
-        content="Home to directors, editors, musicians, cinematographers, illustrators, producers, and other geeky, cool, misfits tied together by our one true love—Crypto">
+    <meta property="og:description" content="Home to directors, editors, musicians, cinematographers, illustrators, producers, and other geeky, cool, misfits tied together by our one true love—Crypto">
 
     <!-- Enter Logo image URL for example : http://cryptonite.finstreet.in/images/cryptonitepost.png -->
     <meta property="og:image" itemprop="image" content="https://platform.crypticentertainments.com/images/logo-1.png" />
@@ -65,10 +63,31 @@ if (isset($_GET['module'])) {
     <link rel="stylesheet" href="css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WBNQ43M');
+    </script>
+    <!-- End Google Tag Manager -->
     <link href="js/sweetalert/sweetalert.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBNQ43M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- Hidden Inputs -->
     <input type="hidden" id="user_address" value="<?php echo $user_address; ?>">
 
@@ -100,17 +119,17 @@ if (isset($_GET['module'])) {
                                             <a href="#">Videos</a>
                                             <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                             <ul class="sub-menu">
-                                                <?php 
+                                                <?php
                                                 $queryCat = "SELECT DISTINCT `module`,`module_uuid` FROM `video_info`;";
                                                 $resultCat = mysqli_query($con, $queryCat);
                                                 if (mysqli_num_rows($resultCat) > 0) {
-                                                    while ($rowCat = mysqli_fetch_assoc($resultCat)) {      
-                                            ?>
-                                                <li class="menu-item">
-                                                    <a
-                                                        href="more-video?module=<?= $rowCat['module_uuid'] ?>"><?= $rowCat['module'] ?></a>
-                                                </li>
-                                                <?php }} ?>
+                                                    while ($rowCat = mysqli_fetch_assoc($resultCat)) {
+                                                ?>
+                                                        <li class="menu-item">
+                                                            <a href="more-video?module=<?= $rowCat['module_uuid'] ?>"><?= $rowCat['module'] ?></a>
+                                                        </li>
+                                                <?php }
+                                                } ?>
                                             </ul>
                                         </li>
                                         <li class="menu-item">
@@ -126,60 +145,55 @@ if (isset($_GET['module'])) {
                                         <form role="search" method="get" class="search-form" action="search">
                                             <label>
                                                 <span class="screen-reader-text"></span>
-                                                <input type="search" class="search-field" placeholder="Search …"
-                                                    value="" name="query">
+                                                <input type="search" class="search-field" placeholder="Search …" value="" name="query">
                                             </label>
-                                            <button type="submit" class="search-submit"><span
-                                                    class="screen-reader-text"></span></button>
+                                            <button type="submit" class="search-submit"><span class="screen-reader-text"></span></button>
                                         </form>
                                     </div>
                                 </div>
-                                <?php 
-                                    if($user_address !== null && $user_address !== ''){
+                                <?php
+                                if ($user_address !== null && $user_address !== '') {
                                 ?>
-                                <div class="gen-account-holder">
-                                    <a href="javascript:void(0)" id="gen-user-btn"><i class="fa fa-user"></i></a>
-                                    <div class="gen-account-menu">
-                                        <ul class="gen-account-menu">
-                                            <!-- Pms Menu -->
-                                            <li>
-                                                <a href="https://rinkeby.etherscan.io/address/<?= $user_address ?>"><i
-                                                        class="fa fa-user"></i>
-                                                    <?php echo substr($user_address, 0, 5) ?>...<?php echo substr($user_address, -5) ?>
-                                                </a>
-                                            </li>
-                                            <!-- Library Menu -->
-                                            <li>
+                                    <div class="gen-account-holder">
+                                        <a href="javascript:void(0)" id="gen-user-btn"><i class="fa fa-user"></i></a>
+                                        <div class="gen-account-menu">
+                                            <ul class="gen-account-menu">
+                                                <!-- Pms Menu -->
+                                                <li>
+                                                    <a href="https://rinkeby.etherscan.io/address/<?= $user_address ?>"><i class="fa fa-user"></i>
+                                                        <?php echo substr($user_address, 0, 5) ?>...<?php echo substr($user_address, -5) ?>
+                                                    </a>
+                                                </li>
+                                                <!-- Library Menu -->
+                                                <li>
                                                     <a href="favourite-videos">
                                                         <i class="fa fa-heart"></i>
-                                                        My Favourite Videos     </a>
+                                                        My Favourite Videos </a>
                                                 </li>
                                                 <li>
                                                     <a href="favourite-webseries">
                                                         <i class="fa fa-heart"></i>
                                                         My Favourite Webseries</a>
                                                 </li>
-                                            <li>
-                                                <a href="logout"><i class="fa fa-sign-out-alt"></i>
-                                                    Sign Out </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <?php }else{ ?>
-                                <div class="gen-btn-container">
-                                    <a href="javascript:void(0)" class="gen-button" onclick="userLoginOut()">
-                                        <div class="gen-button-block">
-                                            <span class="gen-button-line-left"></span>
-                                            <span class="gen-button-text text-capitalize">Sign In</span>
+                                                <li>
+                                                    <a href="logout"><i class="fa fa-sign-out-alt"></i>
+                                                        Sign Out </a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </a>
-                                </div>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="gen-btn-container">
+                                        <a href="javascript:void(0)" class="gen-button" onclick="userLoginOut()">
+                                            <div class="gen-button-block">
+                                                <span class="gen-button-line-left"></span>
+                                                <span class="gen-button-text text-capitalize">Sign In</span>
+                                            </div>
+                                        </a>
+                                    </div>
                                 <?php } ?>
                             </div>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fas fa-bars"></i>
                             </button>
                         </nav>
@@ -235,8 +249,7 @@ if (isset($_GET['module'])) {
                         <div class="gen-btn-container">
                             <a class="gen-button gen-button-loadmore" id="loadMore">
                                 <span class="button-text">Load More</span>
-                                <span class="loadmore-icon" style="display: none;"><i
-                                        class="fa fa-spinner fa-spin"></i></span>
+                                <span class="loadmore-icon" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>
                             </a>
                         </div>
                     </div>
@@ -262,11 +275,9 @@ if (isset($_GET['module'])) {
                                             illustrators, producers, and other geeky, cool, misfits
                                             tied together by our one true love—Crypto.
                                         </p>
-                                        <ul class="social-link">                                            
-                                            <li><a href="https://www.instagram.com/crypticentertainments/"
-                                                    class="facebook"><i class="fab fa-instagram"></i></a></li>                                            
-                                            <li><a href="https://twitter.com/Cryptic_Media" class="facebook"><i
-                                                        class="fab fa-twitter"></i></a></li>
+                                        <ul class="social-link">
+                                            <li><a href="https://www.instagram.com/crypticentertainments/" class="facebook"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a href="https://twitter.com/Cryptic_Media" class="facebook"><i class="fab fa-twitter"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -280,16 +291,16 @@ if (isset($_GET['module'])) {
                                         <li class="menu-item">
                                             <a href="/" aria-current="page">Home</a>
                                         </li>
-                                        <?php 
-                                                $queryCat = "SELECT DISTINCT `module`,`module_uuid` FROM `video_info`;";
-                                                $resultCat = mysqli_query($con, $queryCat);
-                                                if (mysqli_num_rows($resultCat) > 0) {
-                                                    while ($rowCat = mysqli_fetch_assoc($resultCat)) {      
-                                            ?>
-                                        <li class="menu-item"><a
-                                                href="more-video?module=<?= $rowCat['module_uuid'] ?>"><?= $rowCat['module'] ?></a>
-                                        </li>
-                                        <?php }} ?>
+                                        <?php
+                                        $queryCat = "SELECT DISTINCT `module`,`module_uuid` FROM `video_info`;";
+                                        $resultCat = mysqli_query($con, $queryCat);
+                                        if (mysqli_num_rows($resultCat) > 0) {
+                                            while ($rowCat = mysqli_fetch_assoc($resultCat)) {
+                                        ?>
+                                                <li class="menu-item"><a href="more-video?module=<?= $rowCat['module_uuid'] ?>"><?= $rowCat['module'] ?></a>
+                                                </li>
+                                        <?php }
+                                        } ?>
                                         <li class="menu-item">
                                             <a href="./more-web-series.php" aria-current="page">Web Series</a>
                                         </li>
@@ -302,13 +313,7 @@ if (isset($_GET['module'])) {
                                 <h4 class="footer-title">Company</h4>
                                 <div class="menu-about-container">
                                     <ul class="menu">
-                                        <li class="menu-item"><a href="contact-us">Privacy
-                                                Policy</a></li>
-                                        <li class="menu-item"><a href="contact-us">Terms Of
-                                                Use</a></li>
                                         <li class="menu-item"><a href="contact-us">Contact us</a></li>
-
-                                        <li class="menu-item"><a href="contact-us">Faq</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -340,8 +345,7 @@ if (isset($_GET['module'])) {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">
-                            <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 crypticent
-                                    ertainments All Rights
+                            <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 Cryptic Entertainments All Rights
                                     Reserved.</a></span>
                         </div>
                     </div>
@@ -368,10 +372,8 @@ if (isset($_GET['module'])) {
                     </button>
                 </div>
                 <div class="modal-body">
-                <h5 style="text-transform:inherit;">You are not a authenticate user to access this video. Please
-                        visit on Rariable and buy a pass to get the access, Thank You. To get the pass <a
-                            href="https://rarible.com/token/polygon/0xa2d9ded6115b7b7208459450d676f0127418ae7a:35330667205828808645805771972788148449949166894449166732923665699564597280769?tab=owners"
-                            style="color:var(--primary-color)">Click here</a> Or
+                    <h5 style="text-transform:inherit;">You are not a authenticate user to access this video. Please
+                        visit on Rariable and buy a pass to get the access, Thank You. To get the pass <a href="https://rarible.com/token/polygon/0xa2d9ded6115b7b7208459450d676f0127418ae7a:35330667205828808645805771972788148449949166894449166732923665699564597280769?tab=owners" style="color:var(--primary-color)">Click here</a> Or
                         For more information visit plan page now.</a>
                     </h5>
                 </div>
@@ -420,48 +422,49 @@ if (isset($_GET['module'])) {
     <script src="js/sweetalert/jquery.sweet-alert.custom.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script>
-    $(document).ready(function() {
-        var currentRow = $('#rowCount').val();
-        var limit = parseInt(10);
-        var row = parseInt($('#rowCount').val());
-        var count = parseInt($('#total_count').val());
-        var module_uid = $('#module_uid').val();
+        $(document).ready(function() {
+            var currentRow = $('#rowCount').val();
+            var limit = parseInt(10);
+            var row = parseInt($('#rowCount').val());
+            var count = parseInt($('#total_count').val());
+            var module_uid = $('#module_uid').val();
 
-        function loadNow(row, limit, module_uid) {
-            $('.button-text').css("display", "none");
-            $('.loadmore-icon').css("display", "block");
-            $.ajax({
-                type: 'POST',
-                url: 'php/loadMoreVideoData.php',
-                data: {
-                    "rowCount": row,
-                    "limit": limit,
-                    "module_uuid": module_uid
-                },
-                success: function(data) {
-                    row = parseInt(row) + parseInt(limit);
-                    $('#rowCount').val(row);
-                    $('.all-follower').append(data);
-                    $('.button-text').css("display", "block");
-                    $('.loadmore-icon').css("display", "none");
-                    if (row >= count) {
-                        $('#lets_hide').css("display", "none");
-                    } else {
-                        $("#lets_hide").val('Load More');
+            function loadNow(row, limit, module_uid) {
+                $('.button-text').css("display", "none");
+                $('.loadmore-icon').css("display", "block");
+                $.ajax({
+                    type: 'POST',
+                    url: 'php/loadMoreVideoData.php',
+                    data: {
+                        "rowCount": row,
+                        "limit": limit,
+                        "module_uuid": module_uid
+                    },
+                    success: function(data) {
+                        row = parseInt(row) + parseInt(limit);
+                        $('#rowCount').val(row);
+                        $('.all-follower').append(data);
+                        $('.button-text').css("display", "block");
+                        $('.loadmore-icon').css("display", "none");
+                        if (row >= count) {
+                            $('#lets_hide').css("display", "none");
+                        } else {
+                            $("#lets_hide").val('Load More');
+                        }
                     }
-                }
-            });
-        }
-        loadNow(row, limit, module_uid);
-        $('#loadMore').click(function() {
-            row = parseInt($('#rowCount').val());
+                });
+            }
             loadNow(row, limit, module_uid);
+            $('#loadMore').click(function() {
+                row = parseInt($('#rowCount').val());
+                loadNow(row, limit, module_uid);
+            });
         });
-    });
 
-    const CheckForAccessPass = async () => {
+        const CheckForAccessPass = async () => {
             const user_address = document.getElementById("user_address").value
-            const tokenId = '0xa2d9ded6115b7b7208459450d676f0127418ae7a:35330667205828808645805771972788148449949166894449166732923665699564597280769';
+            const tokenId =
+                '0xa2d9ded6115b7b7208459450d676f0127418ae7a:35330667205828808645805771972788148449949166894449166732923665699564597280769';
             const options = {
                 method: 'GET'
             };
@@ -469,7 +472,9 @@ if (isset($_GET['module'])) {
             // const otherOption = 'continuation=POLYGON&size=1000';
             const otherOption = '';
             try {
-                await fetch(`https://api.rarible.org/v0.1/ownerships/byItem?itemId=${blockChain}:${tokenId}&${otherOption}`, options)
+                await fetch(
+                        `https://api.rarible.org/v0.1/ownerships/byItem?itemId=${blockChain}:${tokenId}&${otherOption}`,
+                        options)
                     .then(response => response.json())
                     .then(response => {
                         const ownerships = response.ownerships;
@@ -478,7 +483,7 @@ if (isset($_GET['module'])) {
                             const owner_address = value.owner;
                             const owner_meta_address = owner_address.split("ETHEREUM:")[1];
                             if (owner_meta_address === user_address) {
-                            // if (false) {
+                                // if (false) {
                                 $.ajax({
                                     type: 'POST',
                                     url: 'php/verifyAccessPass.php',
@@ -507,7 +512,7 @@ if (isset($_GET['module'])) {
             }
         }
 
-        function visitPlanPage(){
+        function visitPlanPage() {
             window.location.replace("plans.php");
         }
     </script>

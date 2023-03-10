@@ -63,10 +63,31 @@ $total_count = 0;
     <link rel="stylesheet" href="css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WBNQ43M');
+    </script>
+    <!-- End Google Tag Manager -->
     <link href="js/sweetalert/sweetalert.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBNQ43M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Hidden Inputs -->
     <input type="hidden" id="user_address" value="<?php echo $user_address; ?>">
@@ -150,7 +171,7 @@ $total_count = 0;
                                                 <li>
                                                     <a href="favourite-videos">
                                                         <i class="fa fa-heart"></i>
-                                                        My Favourite Videos     </a>
+                                                        My Favourite Videos </a>
                                                 </li>
                                                 <li>
                                                     <a href="favourite-webseries">
@@ -197,29 +218,29 @@ $total_count = 0;
     $module_name = $row['module'];
     $subscription_type = $row['subscription_type'];
     ?>
-     <!-- breadcrumb -->
-            <div class="gen-breadcrumb" style="background-image: url('images/background/asset-25.jpg');">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-12">
-                            <nav aria-label="breadcrumb">
-                                <div class="gen-breadcrumb-title">
-                                    <h1>
-                                        <?= $module_name ?>
-                                    </h1>
-                                </div>
-                                <div class="gen-breadcrumb-container">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="/"><i class="fas fa-home mr-2"></i>Home</a>
-                                        </li>
-                                        <li class="breadcrumb-item active"><?= $module_name ?></li>
-                                    </ol>
-                                </div>
-                            </nav>
+    <!-- breadcrumb -->
+    <div class="gen-breadcrumb" style="background-image: url('images/background/asset-25.jpg');">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav aria-label="breadcrumb">
+                        <div class="gen-breadcrumb-title">
+                            <h1>
+                                <?= $module_name ?>
+                            </h1>
                         </div>
-                    </div>
+                        <div class="gen-breadcrumb-container">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/"><i class="fas fa-home mr-2"></i>Home</a>
+                                </li>
+                                <li class="breadcrumb-item active"><?= $module_name ?></li>
+                            </ol>
+                        </div>
+                    </nav>
                 </div>
-            </div>  
+            </div>
+        </div>
+    </div>
     <!-- breadcrumb -->
 
     <!-- Section-1 Start -->
@@ -306,13 +327,7 @@ $total_count = 0;
                                 <h4 class="footer-title">Company</h4>
                                 <div class="menu-about-container">
                                     <ul class="menu">
-                                        <li class="menu-item"><a href="contact-us">Privacy
-                                                Policy</a></li>
-                                        <li class="menu-item"><a href="contact-us">Terms Of
-                                                Use</a></li>
                                         <li class="menu-item"><a href="contact-us">Contact us</a></li>
-
-                                        <li class="menu-item"><a href="contact-us">Faq</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -344,8 +359,7 @@ $total_count = 0;
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">
-                            <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 crypticent
-                                    ertainments All Rights
+                            <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 Cryptic Entertainments All Rights
                                     Reserved.</a></span>
                         </div>
                     </div>
@@ -372,7 +386,8 @@ $total_count = 0;
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5 style="text-transform:inherit;">You are not a authenticate user to access this Web Series. Please
+                    <h5 style="text-transform:inherit;">You are not a authenticate user to access this Web Series.
+                        Please
                         visit on Rariable and buy a pass to get the access for this series. To get the pass <a id="new_href" style="color:var(--primary-color)">Click here</a> Or
                         For more information visit plan page now. </h5>
                 </div>
@@ -481,7 +496,9 @@ $total_count = 0;
             // const otherOption = 'continuation=POLYGON&size=1000';
             const otherOption = '';
             try {
-                await fetch(`https://api.rarible.org/v0.1/ownerships/byItem?itemId=${blockChain}:${tokenId}&${otherOption}`, options)
+                await fetch(
+                        `https://api.rarible.org/v0.1/ownerships/byItem?itemId=${blockChain}:${tokenId}&${otherOption}`,
+                        options)
                     .then(response => response.json())
                     .then(response => {
                         const ownerships = response.ownerships;
@@ -490,7 +507,7 @@ $total_count = 0;
                             const owner_address = value.owner;
                             const owner_meta_address = owner_address.split("ETHEREUM:")[1];
                             if (owner_meta_address === loginUserAddress) {
-                            // if (false) {
+                                // if (false) {
                                 $.ajax({
                                     type: 'POST',
                                     url: 'php/verifySuperPass.php',
@@ -502,7 +519,8 @@ $total_count = 0;
                                     },
                                     success: function(data) {
                                         if (data.status == '201') {
-                                            window.location = `web-series-episodes?video_uuid=${video_uuid}`;
+                                            window.location =
+                                                `web-series-episodes?video_uuid=${video_uuid}`;
                                         }
                                     }
                                 });

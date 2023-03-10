@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('php/link.php');
-$client = '';
+$client = 'https://ipfs.fleek.co/ipfs/';
 $user_address = '';
 $post_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 $super_pass_token_id = '';
@@ -66,10 +66,31 @@ if ($user_address != null && $user_address != '') {
     <link rel="stylesheet" href="css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WBNQ43M');
+    </script>
+    <!-- End Google Tag Manager -->
     <link href="js/sweetalert/sweetalert.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBNQ43M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Hidden Inputs -->
     <input type="hidden" id="user_address" value="<?php echo $user_address; ?>">
@@ -1533,13 +1554,7 @@ if ($user_address != null && $user_address != '') {
                                 <h4 class="footer-title">Company</h4>
                                 <div class="menu-about-container">
                                     <ul class="menu">
-                                        <li class="menu-item"><a href="contact-us">Privacy
-                                                Policy</a></li>
-                                        <li class="menu-item"><a href="contact-us">Terms Of
-                                                Use</a></li>
                                         <li class="menu-item"><a href="contact-us">Contact us</a></li>
-
-                                        <li class="menu-item"><a href="contact-us">Faq</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1571,8 +1586,7 @@ if ($user_address != null && $user_address != '') {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">
-                            <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 crypticent
-                                    ertainments All Rights
+                            <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 Cryptic Entertainments All Rights
                                     Reserved.</a></span>
                         </div>
                     </div>
@@ -1625,7 +1639,8 @@ if ($user_address != null && $user_address != '') {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5 style="text-transform:inherit;">You are not a authenticate user to access this Web Series. Please
+                    <h5 style="text-transform:inherit;">You are not a authenticate user to access this Web Series.
+                        Please
                         visit on Rariable and buy a pass to get the access for this series. To get the pass <a id="new_href" style="color:var(--primary-color)">Click here</a> Or
                         For more information visit plan page now. </h5>
                 </div>
@@ -1698,7 +1713,8 @@ if ($user_address != null && $user_address != '') {
 
         const CheckForAccessPass = async () => {
             const user_address = document.getElementById("user_address").value
-            const tokenId = '0xa2d9ded6115b7b7208459450d676f0127418ae7a:35330667205828808645805771972788148449949166894449166732923665699564597280769';
+            const tokenId =
+                '0xa2d9ded6115b7b7208459450d676f0127418ae7a:35330667205828808645805771972788148449949166894449166732923665699564597280769';
             const options = {
                 method: 'GET'
             };
@@ -1706,16 +1722,18 @@ if ($user_address != null && $user_address != '') {
             // const otherOption = 'continuation=POLYGON&size=1000';
             const otherOption = '';
             try {
-                await fetch(`https://api.rarible.org/v0.1/ownerships/byItem?itemId=${blockChain}:${tokenId}&${otherOption}`, options)
+                await fetch(
+                        `https://api.rarible.org/v0.1/ownerships/byItem?itemId=${blockChain}:${tokenId}&${otherOption}`,
+                        options)
                     .then(response => response.json())
                     .then(response => {
                         const ownerships = response.ownerships;
-                        let passStatus = true;
+                        let passStatus = false;
                         ownerships.map((value, key) => {
                             const owner_address = value.owner;
                             const owner_meta_address = owner_address.split("ETHEREUM:")[1];
-                            if (false) {
-                            //  if (true) {
+                            if (owner_meta_address === user_address) {
+                                // if (false) {
                                 $.ajax({
                                     type: 'POST',
                                     url: 'php/verifyAccessPass.php',
@@ -1757,16 +1775,18 @@ if ($user_address != null && $user_address != '') {
             // const otherOption = 'continuation=POLYGON&size=1000';
             const otherOption = '';
             try {
-                await fetch(`https://api.rarible.org/v0.1/ownerships/byItem?itemId=${blockChain}:${tokenId}&${otherOption}`, options)
+                await fetch(
+                        `https://api.rarible.org/v0.1/ownerships/byItem?itemId=${blockChain}:${tokenId}&${otherOption}`,
+                        options)
                     .then(response => response.json())
                     .then(response => {
                         const ownerships = response.ownerships;
-                        const passStatus = true;
+                        const passStatus = false;
                         ownerships.map((value, key) => {
                             const owner_address = value.owner;
                             const owner_meta_address = owner_address.split("ETHEREUM:")[1];
-                            if (false) {
-                            //  if (true) {
+                            if (owner_meta_address === loginUserAddress) {
+                                // if (false) {
                                 $.ajax({
                                     type: 'POST',
                                     url: 'php/verifySuperPass.php',
@@ -1778,7 +1798,8 @@ if ($user_address != null && $user_address != '') {
                                     },
                                     success: function(data) {
                                         if (data.status == '201') {
-                                            window.location = `web-series-episodes?video_uuid=${video_uuid}`;
+                                            window.location =
+                                                `web-series-episodes?video_uuid=${video_uuid}`;
                                         }
                                     }
                                 });
@@ -1841,7 +1862,6 @@ if ($user_address != null && $user_address != '') {
 
         // const user_address = document.getElementById("user_address").value
         // verifyPremiumPass(user_address);
-
     </script>
 </body>
 

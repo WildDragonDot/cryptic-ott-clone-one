@@ -35,22 +35,11 @@ if(!empty($_POST['name']) && !empty($_POST['video_desc']) && !empty($_POST['thum
 	$user_type = mysqli_real_escape_string($link, $_POST['user_type']);	
 	$moreDetails = $VideoDetails . '/' . $video_uuid;
 	$categoryName = '';
-	// echo "this is video category" + $category;
-	// 5822014a-02af-41c4-8564-0ec4ceba8db6 news 
-	// 927f0965-6eed-462c-bfa0-79867c9f9448 explainer
-	// fd3d24bd-8764-494e-9ade-40911b8e11a1 tutorial
-	// 5dae4ba7-933a-40a9-8866-49ee971ccf87 review
-	// 0f01d804-648d-42a7-ab11-bdc373f4b7bd others
-	if($category == '5822014a-02af-41c4-8564-0ec4ceba8db6'){
-		$categoryName='News';
-	}else if($category == '927f0965-6eed-462c-bfa0-79867c9f9448'){
-		$categoryName='explainer';
+	if($category == '927f0965-6eed-462c-bfa0-79867c9f9448'){
+		$categoryName='Cryptonite';
 	}else if($category == 'fd3d24bd-8764-494e-9ade-40911b8e11a1'){
-		$categoryName='tutorial';
-	}else if($category == '5dae4ba7-933a-40a9-8866-49ee971ccf87'){
-		$categoryName='review';
-	}
-	else{
+		$categoryName='Cryptonext';
+	}else{
 		$categoryName = '';
 	}
 	
@@ -59,9 +48,8 @@ if(!empty($_POST['name']) && !empty($_POST['video_desc']) && !empty($_POST['thum
 
 	if($result1 = mysqli_query($link, $query)) {
 		$data['status'] = 201;
-		$data['message']= 'Insert Video Data Successfully';
+		$data['message']= 'Insert Data Successfully';
 		echo json_encode($data);
-		echo "Insert Data Successfully";
 		mysqli_close($link);
 
 	}else{  

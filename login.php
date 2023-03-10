@@ -47,6 +47,24 @@ if(isset($_SESSION['crypticUserAddress'])){
     <link rel="stylesheet" href="css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WBNQ43M');
+    </script>
+    <!-- End Google Tag Manager -->
     <link href="js/sweetalert/sweetalert.css" rel="stylesheet">
     <style>
     .bg-gray-200 {
@@ -62,13 +80,17 @@ if(isset($_SESSION['crypticUserAddress'])){
         height: 1px;
     }
 
-    .button:hover{
+    .button:hover {
         background-color: #03939b !important;
     }
     </style>
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBNQ43M" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!--=========== Loader =============-->
     <div id="gen-loading">
@@ -143,10 +165,10 @@ if(isset($_SESSION['crypticUserAddress'])){
                         visit on Rariable and buy a plan to get the access. Thank You .
                         For more information visit now.</a>
                     </h5>
-                        <!-- <a
+                    <!-- <a
                             href="https://rarible.com/token/polygon/0xa2d9ded6115b7b7208459450d676f0127418ae7a:35330667205828808645805771972788148449949166894449166732923665699564597280769?tab=owners"
                             style="color:var(--primary-color)">Token</a> -->
-                             
+
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="button button-primary" data-dismiss="modal" value="Close"
@@ -200,7 +222,7 @@ if(isset($_SESSION['crypticUserAddress'])){
         window.location.replace(
             // "https://rarible.com/token/polygon/0xa2d9ded6115b7b7208459450d676f0127418ae7a:35330667205828808645805771972788148449949166894449166732923665699564597280769?tab=owners"
             "plans.php"
-            );
+        );
     }
     </script>
 

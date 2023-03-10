@@ -100,6 +100,24 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
     <link rel="stylesheet" href="css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WBNQ43M');
+    </script>
+    <!-- End Google Tag Manager -->
     <link href="js/sweetalert/sweetalert.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css" />
     <style type="text/css">
@@ -307,79 +325,79 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
 
         @media screen and (max-width: 480px) {
             .circular {
-            height: 100px;
-            width: 100px;
-            /* position: relative;
+                height: 100px;
+                width: 100px;
+                /* position: relative;
             transform: scale(2); */
-            position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 45;
-        }
+                position: absolute;
+                top: 35%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 45;
+            }
 
-        .circular .inner {
-            position: absolute;
-            z-index: 6;
-            top: 50%;
-            left: 50%;
-            height: 80px;
-            width: 80px;
-            margin: -40px 0 0 -40px;
-            background: #dde6f0;
-            border-radius: 100%;
-        }
+            .circular .inner {
+                position: absolute;
+                z-index: 6;
+                top: 50%;
+                left: 50%;
+                height: 80px;
+                width: 80px;
+                margin: -40px 0 0 -40px;
+                background: #dde6f0;
+                border-radius: 100%;
+            }
 
-        .circular .number {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            font-size: 18px;
-            font-weight: 500;
-            color: rgb(6 191 201);
-        }
+            .circular .number {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 10;
+                font-size: 18px;
+                font-weight: 500;
+                color: rgb(6 191 201);
+            }
 
-        .circular .bar {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            background: #fff;
-            -webkit-border-radius: 100%;
-            clip: rect(0px, 100px, 100px, 50px);
-        }
+            .circular .bar {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                background: #fff;
+                -webkit-border-radius: 100%;
+                clip: rect(0px, 100px, 100px, 50px);
+            }
 
-        .circle .bar .progress {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            -webkit-border-radius: 100%;
-            clip: rect(0px, 50px, 100px, 0px);
-            background: rgb(6 191 201);
-        }
+            .circle .bar .progress {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                -webkit-border-radius: 100%;
+                clip: rect(0px, 50px, 100px, 0px);
+                background: rgb(6 191 201);
+            }
 
-        .circle .right .progress {
-            z-index: 1;
-            animation: left 1s linear both;
-        }
+            .circle .right .progress {
+                z-index: 1;
+                animation: left 1s linear both;
+            }
 
-        /* @keyframes left {
+            /* @keyframes left {
             100% {
                 transform: rotate(180deg);
             }
         } */
 
-        .circle .right {
-            transform: rotate(180deg);
-            z-index: 3;
-        }
+            .circle .right {
+                transform: rotate(180deg);
+                z-index: 3;
+            }
 
-        .circle .right .progress {
-            animation: right 1s linear both;
-            animation-delay: 1s;
-        }
-            
+            .circle .right .progress {
+                animation: right 1s linear both;
+                animation-delay: 1s;
+            }
+
         }
 
         .noneDisplay {
@@ -389,6 +407,9 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBNQ43M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <input type="hidden" name="video_uuid" value="<?= $module ?>" id="video_uuid">
     <input type="hidden" name="module_uuid" value="<?= $module ?>" id="module_uuid">
     <input type="hidden" id="rowCount" value="0">
@@ -632,13 +653,7 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
                                     <h4 class="footer-title">Company</h4>
                                     <div class="menu-about-container">
                                         <ul class="menu">
-                                            <li class="menu-item"><a href="contact-us">Privacy
-                                                    Policy</a></li>
-                                            <li class="menu-item"><a href="contact-us">Terms Of
-                                                    Use</a></li>
                                             <li class="menu-item"><a href="contact-us">Contact us</a></li>
-
-                                            <li class="menu-item"><a href="contact-us">Faq</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -670,8 +685,7 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 align-self-center">
-                                <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 crypticent
-                                        ertainments All Rights
+                                <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 Cryptic Entertainments All Rights
                                         Reserved.</a></span>
                             </div>
                         </div>
@@ -741,7 +755,7 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
     <script src="js/sweetalert/sweetalert.min.js"></script>
     <script src="js/sweetalert/jquery.sweet-alert.custom.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-
+    <script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script>
 
     <script>
         const player = new Plyr('video', {
@@ -920,19 +934,32 @@ if (isset($_GET['course']) && isset($_GET['module']) && ($_GET['module'] !== '')
 
                         if (Number(percentComplete) <= 50.00) {
                             document.querySelector('.number').innerHTML = percentComplete + '%';
-                            document.querySelector('.progress_left').style.transform = 'rotate(' + (percentComplete * 3.6) + 'deg)';
+                            document.querySelector('.progress_left').style.transform = 'rotate(' + (
+                                percentComplete * 3.6) + 'deg)';
                         } else {
                             document.querySelector('.number').innerHTML = percentComplete + '%';
-                            document.querySelector('.progress_right').style.transform = 'rotate(' + ((percentComplete % 50) * 3.6) + 'deg)';
+                            document.querySelector('.progress_right').style.transform = 'rotate(' + ((
+                                percentComplete % 50) * 3.6) + 'deg)';
                         }
                     }
                 }
             };
             request.onload = function() {
                 if (this.status === 200) {
-                    var file = new File([this.response], 'test.mp4', { type: 'video/mp4' });
-                    let url2 = URL.createObjectURL(file);
-                    document.getElementById('myVideo').src = url2;
+                    const source = video;
+                    const video_id = document.querySelector('video');
+                    console.log(source);
+                    if (!Hls.isSupported()) {
+                        video_id.src = source;
+                    } else {
+                        const hls = new Hls();
+                        hls.loadSource(source);
+                        hls.attachMedia(video_id);
+                        window.hls = hls;
+                        player.on('languagechange', () => {
+                            setTimeout(() => hls.subtitleTrack = player.currentTrack, 50);
+                        });
+                    }
                 }
             };
             request.send();

@@ -3,9 +3,9 @@ session_start();
 include("php/link.php");
 $client = 'https://ipfs.fleek.co/ipfs/';
 $user_address = '';
-if(isset($_SESSION['crypticUserAddress'])){
+if (isset($_SESSION['crypticUserAddress'])) {
     $user_address = $_SESSION['crypticUserAddress'];
-}else{
+} else {
     $user_address = '';
     header("Location:login");
 }
@@ -17,16 +17,16 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
     $from_ip = $_SERVER['REMOTE_ADDR'];
     $from_browser = $_SERVER['HTTP_USER_AGENT'];
     date_default_timezone_set("Asia/Calcutta");
-    $date_now = date("r");    
+    $date_now = date("r");
     function guidv4($data)
     {
         assert(strlen($data) == 16);
         $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version to 0100
         $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
-    } 
-        
-    $enquiry_id = guidv4(openssl_random_pseudo_bytes(16)); 
+    }
+
+    $enquiry_id = guidv4(openssl_random_pseudo_bytes(16));
     $name = mysqli_real_escape_string($con, $_GET['name']);
     $email = mysqli_real_escape_string($con, $_GET['email']);
     $phone = mysqli_real_escape_string($con, $_GET['phone']);
@@ -35,11 +35,10 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
 
 
     $query = "INSERT INTO `enquiry_info`(`enquiry_id`, `name`, `email`, `phone`,`address`,`message`, `from_ip`, `from_browser`, `from_time`) VALUES ('$enquiry_id','$name','$email','$phone','$address','$message','$from_ip','$from_browser','$date_now')";
-        
-    if (mysqli_query($con, $query) ) {
+
+    if (mysqli_query($con, $query)) {
         header("Location: contact-us");
     } else {
-
     }
 }
 
@@ -53,8 +52,7 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
 <head>
     <meta charset="utf-8">
     <!-- Enter a proper description for the page in the meta description tag -->
-    <meta name="description"
-        content="Home to directors, editors, musicians, cinematographers, illustrators, producers, and other geeky, cool, misfits tied together by our one true love—Crypto">
+    <meta name="description" content="Home to directors, editors, musicians, cinematographers, illustrators, producers, and other geeky, cool, misfits tied together by our one true love—Crypto">
 
     <!-- Enter a keywords for the page in tag -->
     <meta name="Keywords" content="">
@@ -66,13 +64,11 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
     <meta property="og:url" content="https://platform.crypticentertainments.com" />
 
     <!-- Enter page description -->
-    <meta property="og:description"
-        content="Home to directors, editors, musicians, cinematographers, illustrators, producers, and other geeky, cool, misfits tied together by our one true love—Crypto">
+    <meta property="og:description" content="Home to directors, editors, musicians, cinematographers, illustrators, producers, and other geeky, cool, misfits tied together by our one true love—Crypto">
 
     <!-- Enter Logo image URL for example : http://cryptonite.finstreet.in/images/cryptonitepost.png -->
     <meta property="og:image" itemprop="image" content="https://platform.crypticentertainments.com/images/logo-1.png" />
-    <meta property="og:image:secure_url" itemprop="image"
-        content="https://platform.crypticentertainments.com/images/logo-1.png" />
+    <meta property="og:image:secure_url" itemprop="image" content="https://platform.crypticentertainments.com/images/logo-1.png" />
     <meta property="og:image:width" content="600">
     <meta property="og:image:height" content="315">
     <meta property="og:type" content="website" />
@@ -86,9 +82,33 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
     <link rel="stylesheet" href="css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WBNQ43M');
+    </script>
+    <!-- End Google Tag Manager -->
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBNQ43M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBNQ43M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!--=========== Loader =============-->
     <div id="gen-loading">
@@ -118,17 +138,17 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
                                             <a href="#">Videos</a>
                                             <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                             <ul class="sub-menu">
-                                                <?php 
+                                                <?php
                                                 $queryCat = "SELECT DISTINCT `module`,`module_uuid` FROM `video_info`;";
                                                 $resultCat = mysqli_query($con, $queryCat);
                                                 if (mysqli_num_rows($resultCat) > 0) {
-                                                    while ($rowCat = mysqli_fetch_assoc($resultCat)) {      
-                                            ?>
-                                                <li class="menu-item">
-                                                    <a
-                                                        href="more-video?module=<?= $rowCat['module_uuid'] ?>"><?= $rowCat['module'] ?></a>
-                                                </li>
-                                                <?php }} ?>
+                                                    while ($rowCat = mysqli_fetch_assoc($resultCat)) {
+                                                ?>
+                                                        <li class="menu-item">
+                                                            <a href="more-video?module=<?= $rowCat['module_uuid'] ?>"><?= $rowCat['module'] ?></a>
+                                                        </li>
+                                                <?php }
+                                                } ?>
                                             </ul>
                                         </li>
                                         <li class="menu-item">
@@ -144,55 +164,50 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
                                         <form role="search" method="get" class="search-form" action="search">
                                             <label>
                                                 <span class="screen-reader-text"></span>
-                                                <input type="search" class="search-field" placeholder="Search …"
-                                                    value="" name="query">
+                                                <input type="search" class="search-field" placeholder="Search …" value="" name="query">
                                             </label>
-                                            <button type="submit" class="search-submit"><span
-                                                    class="screen-reader-text"></span></button>
+                                            <button type="submit" class="search-submit"><span class="screen-reader-text"></span></button>
                                         </form>
                                     </div>
                                 </div>
-                                <?php 
-                                    if($user_address !== null && $user_address !== ''){
+                                <?php
+                                if ($user_address !== null && $user_address !== '') {
                                 ?>
-                                <div class="gen-account-holder">
-                                    <a href="javascript:void(0)" id="gen-user-btn"><i class="fa fa-user"></i></a>
-                                    <div class="gen-account-menu">
-                                        <ul class="gen-account-menu">
-                                            <!-- Pms Menu -->
-                                            <li>
-                                                <a href="https://rinkeby.etherscan.io/address/<?= $user_address ?>"><i
-                                                        class="fa fa-user"></i>
-                                                    <?php echo substr($user_address, 0, 5) ?>...<?php echo substr($user_address, -5) ?>
-                                                </a>
-                                            </li>
-                                            <!-- Library Menu -->
-                                            <li>
-                                                <a href="favourite-videos">
-                                                    <i class="fa fa-heart"></i>
-                                                    My Favourite </a>
-                                            </li>
-                                            <li>
-                                                <a href="logout"><i class="fa fa-sign-out-alt"></i>
-                                                    Sign Out </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <?php }else{ ?>
-                                <div class="gen-btn-container">
-                                    <a href="javascript:void(0)" class="gen-button" onclick="userLoginOut()">
-                                        <div class="gen-button-block">
-                                            <span class="gen-button-line-left"></span>
-                                            <span class="gen-button-text text-capitalize">Sign In</span>
+                                    <div class="gen-account-holder">
+                                        <a href="javascript:void(0)" id="gen-user-btn"><i class="fa fa-user"></i></a>
+                                        <div class="gen-account-menu">
+                                            <ul class="gen-account-menu">
+                                                <!-- Pms Menu -->
+                                                <li>
+                                                    <a href="https://rinkeby.etherscan.io/address/<?= $user_address ?>"><i class="fa fa-user"></i>
+                                                        <?php echo substr($user_address, 0, 5) ?>...<?php echo substr($user_address, -5) ?>
+                                                    </a>
+                                                </li>
+                                                <!-- Library Menu -->
+                                                <li>
+                                                    <a href="favourite-videos">
+                                                        <i class="fa fa-heart"></i>
+                                                        My Favourite </a>
+                                                </li>
+                                                <li>
+                                                    <a href="logout"><i class="fa fa-sign-out-alt"></i>
+                                                        Sign Out </a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </a>
-                                </div>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="gen-btn-container">
+                                        <a href="javascript:void(0)" class="gen-button" onclick="userLoginOut()">
+                                            <div class="gen-button-block">
+                                                <span class="gen-button-line-left"></span>
+                                                <span class="gen-button-text text-capitalize">Sign In</span>
+                                            </div>
+                                        </a>
+                                    </div>
                                 <?php } ?>
                             </div>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fas fa-bars"></i>
                             </button>
                         </nav>
@@ -287,19 +302,15 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
                     <h2 class="mb-5">get in touch</h2>
                     <form>
                         <div class="row gt-form">
-                            <div class="col-md-6 mb-4"><input type="text" name="name" placeholder="Your Name"
-                                    pattern="[a-zA-Z'-'\s]{5,}" title="Minimum 5 letters" required>
+                            <div class="col-md-6 mb-4"><input type="text" name="name" placeholder="Your Name" pattern="[a-zA-Z'-'\s]{5,}" title="Minimum 5 letters" required>
                             </div>
                             <div class="col-md-6 mb-4"><input type="email" name="email" placeholder="Email" required>
                             </div>
-                            <div class="col-md-6 mb-4"><input type="text" name="phone" placeholder="Cell Phone"
-                                    pattern="[6-9]{1}[0-9]{9}"
-                                    title="Phone number with 6-9 and remaing 9 digit with 0-9" required>
+                            <div class="col-md-6 mb-4"><input type="text" name="phone" placeholder="Cell Phone" pattern="[6-9]{1}[0-9]{9}" title="Phone number with 6-9 and remaing 9 digit with 0-9" required>
                             </div>
                             <div class="col-md-6 mb-4"><input type="text" name="address" placeholder="Address" required>
                             </div>
-                            <div class="col-md-12 mb-4"><textarea name="message" rows="6" placeholder="Your Message"
-                                    required></textarea><br>
+                            <div class="col-md-12 mb-4"><textarea name="message" rows="6" placeholder="Your Message" required></textarea><br>
                                 <input type="submit" value="Send" class="mt-4">
                             </div>
                         </div>
@@ -332,11 +343,9 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
                                             illustrators, producers, and other geeky, cool, misfits
                                             tied together by our one true love—Crypto.
                                         </p>
-                                        <ul class="social-link">                                            
-                                            <li><a href="https://www.instagram.com/crypticentertainments/"
-                                                    class="facebook"><i class="fab fa-instagram"></i></a></li>                                            
-                                            <li><a href="https://twitter.com/Cryptic_Media" class="facebook"><i
-                                                        class="fab fa-twitter"></i></a></li>
+                                        <ul class="social-link">
+                                            <li><a href="https://www.instagram.com/crypticentertainments/" class="facebook"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a href="https://twitter.com/Cryptic_Media" class="facebook"><i class="fab fa-twitter"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -350,16 +359,16 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
                                         <li class="menu-item">
                                             <a href="/" aria-current="page">Home</a>
                                         </li>
-                                        <?php 
-                                                $queryCat = "SELECT DISTINCT `module`,`module_uuid` FROM `video_info`;";
-                                                $resultCat = mysqli_query($con, $queryCat);
-                                                if (mysqli_num_rows($resultCat) > 0) {
-                                                    while ($rowCat = mysqli_fetch_assoc($resultCat)) {      
-                                            ?>
-                                        <li class="menu-item"><a
-                                                href="more-video?module=<?= $rowCat['module_uuid'] ?>"><?= $rowCat['module'] ?></a>
-                                        </li>
-                                        <?php }} ?>
+                                        <?php
+                                        $queryCat = "SELECT DISTINCT `module`,`module_uuid` FROM `video_info`;";
+                                        $resultCat = mysqli_query($con, $queryCat);
+                                        if (mysqli_num_rows($resultCat) > 0) {
+                                            while ($rowCat = mysqli_fetch_assoc($resultCat)) {
+                                        ?>
+                                                <li class="menu-item"><a href="more-video?module=<?= $rowCat['module_uuid'] ?>"><?= $rowCat['module'] ?></a>
+                                                </li>
+                                        <?php }
+                                        } ?>
                                         <li class="menu-item">
                                             <a href="./more-web-series.php" aria-current="page">Web Series</a>
                                         </li>
@@ -372,13 +381,7 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
                                 <h4 class="footer-title">Company</h4>
                                 <div class="menu-about-container">
                                     <ul class="menu">
-                                        <li class="menu-item"><a href="contact-us">Privacy
-                                                Policy</a></li>
-                                        <li class="menu-item"><a href="contact-us">Terms Of
-                                                Use</a></li>
                                         <li class="menu-item"><a href="contact-us">Contact us</a></li>
-
-                                        <li class="menu-item"><a href="contact-us">Faq</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -410,8 +413,7 @@ if ((isset($_GET['name'])) && (isset($_GET['email'])) && (isset($_GET['phone']))
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">
-                            <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 crypticent
-                                    ertainments All Rights
+                            <span class="gen-copyright"><a target="_blank" href="#"> Copyright 2022 Cryptic Entertainments All Rights
                                     Reserved.</a></span>
                         </div>
                     </div>
